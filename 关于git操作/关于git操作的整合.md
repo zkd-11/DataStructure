@@ -1,0 +1,277 @@
+# 4.19 16：00 - 21： 00 数据整合
+
+# Git Bash
+
+​	**含义：** Git Bash 是在 Windows 操作系统上运行 Git 命令的一种**终端模拟器**，它提供了一种在 Windows 中使用 **Bash Shell（Unix Shell）的方式**，可以在 Windows 下使用类 Unix Shell 的命令行语法操作 Git。它使用的是 Git for Windows 版本，其中包含了 **Git 命令行工具和 Git GUI 工具**，并且还包含了 Bash Shell 环境，可以在 Windows 中使用 Bash Shell 命令行操作 Git。
+
+​	Git Gui 可视化操作图形工具，通过**鼠标点击选择**，即可将文件上传到远程仓库
+
+Git Bash 是一个很好的工具，因为它提供了一个更为熟悉的 Linux / Unix 命令行环境，让 Windows 用户可以更方便地使用 Git 命令
+
+### Git Bash工具的汉化
+
+​	![image-20230418185539964](关于git操作的整合.assets/image-20230418185539964.png)
+
+​	GitBash  在界面**右键即可选择汉化**
+
+![image-20230418185614575](关于git操作的整合.assets/image-20230418185614575.png)
+
+GitGui,需要**下载汉化包 zh_cn_msg**，并将汉化包放到msgs文件下（手动生成放于../lib目录xia）
+
+**汉化包下载地址：** https://gitcode.net/mirrors/stayor/git-gui-zh/-/blob/master/zh_cn.msg
+
+
+
+
+
+## 本地仓库与远程仓库的连接
+
+<img src="关于git操作的整合.assets/image-20230418191258265.png" alt="image-20230418191258265" style="zoom: 80%;" />
+
+
+
+
+
+1. **在GitHub上建立一个新的仓库**
+
+2. **将本地仓库初始化**
+
+   所要进行连接的本地仓库（某个目录），在地址栏 cmd进去该目录
+
+   在window终端执行命令   **git init** ，会在该目录下生成**.git隐藏文件**  标识初始化成功
+
+   ​	在初始化时，可能由于版本不同，将分支命名为 master，需要重新以main命名分支，否则使后	面git pull失败
+
+3. **与远程仓库建立连接：** 
+
+   **git remote add origin GitHub 仓库的 URL** （不加[ ]，此语句将url（远程仓库）命名为**origin**,origin代表的为 URL地址， 加[ ] 后面上传时 使用 origin失败，不会解析符号内 内容）
+
+4. **建立成功后便可进行数据的传输**
+
+   将本地 Git 仓库中所有未跟踪的文件添加到 Git 索引中
+
+   ​	**git add .**
+
+   将文件提交到本地 Git 仓库，使用以下命令（请将 "commit message" 替换为您的提交消息）,提交的描述，又名为签名（可在描述中告诉本人做了的修改）
+
+   ​	**git commit -m "commit message"**     **-m必写**
+
+   <img src="关于git操作的整合.assets/image-20230418194506919.png" alt="image-20230418194506919" style="zoom:80%;" />
+
+   将本地 Git 仓库的提交推送到 GitHub 远程仓库中的 `main` 分支
+
+   ​	**git push -u origin main** ， 此句原为git push -u origin main(远程仓库的main分支) 	
+
+   ​	main(本地仓库的main分支)，因为名字相同故可以省略为如上语句
+
+
+
+## 一些语句
+
+git branch  检测当时所在分支  
+
+git branch main 如果main分支不在 则创建
+
+git remote -v  显示所连接的远程仓库
+
+git checkout [branch name]（分支名）  切换到所要切换的分支
+
+git remote remove origin  取消连接
+
+git reset 将缓冲区的内容去除
+
+​	git reset <file> 撤销更改的文件名
+
+
+
+# 知识点
+
+### main分支
+
+本地仓库的主分支（默认为 `main` 分支）是一个指向您项目根目录下的所有文件和子目录的指针。在 Git 中，每次提交更改时，都会创建一个新的提交对象，该对象包含对文件和目录所做更改的描述。每个提交对象都有一个指向其父提交对象的指针，这样就可以形成一个提交历史记录链。
+
+当您在本地仓库上创建 `main` 分支时，Git 会将其指向当前工作目录中的所有文件和子目录。在此之后，当您提交更改时，`main` 分支指针将指向新的提交对象。因此，`main` 分支是一个指向整个项目根目录下的所有文件和子目录的指针。
+
+需要注意的是，Git 仓库中的子目录和文件并不是自动包含在版本控制中的。您需要显式地将它们添加到 Git 仓库中，以便它们的更改能够被跟踪和提交。使用 `git add` 命令可以将文件或目录添加到 Git 仓库中。
+
+希望这个解释可以帮助您理解本地仓库的主分支是如何指向项目根目录下的所有文件和子目录的。
+
+
+
+### 为什么本地分支默认为master不为main
+
+在 Git 的早期版本中，`master` 是默认的主分支名称，因此很多人在创建 Git 仓库时都会使用 `master` 分支。但是在 2020 年，GitHub 宣布将默认分支从 `master` 改为 `main`，这是为了避免 `master` 分支这一术语的潜在种族主义含义。
+
+因此，如果您的 Git 版本比较旧，或者您创建仓库时使用了旧版本的 Git，那么您的默认分支可能会是 `master` 而不是 `main`。为了使您的仓库与 GitHub 上的仓库保持一致，建议您将本地仓库的默认分支更改为 `main`。
+
+​	**将分支改为main：** 
+
+git branch 检查当前 所在分支
+
+ git checkout master 如果未在mater分支则切换到该分支
+
+  git checkout -b main 创建新的分支main 并切换到该分支上
+
+git push -u origin main  将新的分支推送到远程仓库，初次使用时，将本地分支传送到远程仓库，并将其设置为默认分支
+
+   git branch -d master 将原master分支删除
+
+​	git push origin --delete 把删除操作推送到远程仓库
+
+  
+
+### 本地分支代表着指针
+
+本地分支可以被视为指向某个 Git 仓库的提交对象的指针。每当您在本地仓库中进行更改并提交时，分支指针就会向前移动，指向新的提交对象。因此，分支指针可以帮助您跟踪 Git 仓库中的历史记录，并让您知道当前分支上的最新提交。
+
+在 Git 中，分支实际上是指向某个提交对象的指针。当您创建新分支时，实际上是创建了一个新的指针，该指针指向当前分支的最新提交对象。当您在新分支上进行更改并提交时，分支指针会向前移动，指向新的提交对象。这就是为什么在 Git 中，分支被称为指针或引用。
+
+总之，本地分支可以被视为指向某个 Git 仓库的提交对象的指针，它可以帮助您跟踪 Git 仓库中的历史记录，并让您知道当前分支上的最新提交。
+
+### origin 代表远程仓库的名字
+
+`origin` 是 Git 中默认的远程仓库名字，它指向最初克隆或创建本地仓库时所指定的远程仓库。在默认情况下，当您将本地仓库与远程仓库进行关联时，Git 会自动将远程仓库命名为 `origin`。您可以使用 `git remote -v` 命令来查看您当前的本地仓库与哪些远程仓库进行了关联，以及它们的名字和 URL
+
+
+
+### 查看 git remote -v ，查看当前所连接的远程仓库 (fetch)  (push)
+
+<img src="关于git操作的整合.assets/image-20230418200839335.png" alt="image-20230418200839335" style="zoom:80%;" />
+
+
+
+### 上传时 首次需要 -u
+
+<img src="关于git操作的整合.assets/image-20230418201020506.png" alt="image-20230418201020506" style="zoom:80%;" />
+
+
+
+### 两个不相关的git仓库
+
+两个不相关的 Git 仓库通常指的是它们之间没有共同的祖先，因此它们的历史记录不相关。
+
+在 Git 中，每个仓库都维护着一条提交历史记录。如果两个仓库之间没有共同的祖先，那么它们的历史记录就不相关。这可能会导致一些问题，例如在将两个不相关的仓库合并时，可能会出现冲突，因为它们的历史记录没有共同的基础。
+
+如果您尝试将本地仓库与远程仓库连接，但它们之间没有共同的祖先，那么可能会出现连接失败的情况。在这种情况下，您可以尝试使用 `--allow-unrelated-histories` 选项来强制合并两个不相关的仓库。但是，在使用该选项之前，请确保您理解了其可能带来的风险和影响。
+
+
+
+<img src="关于git操作的整合.assets/image-20230418201747630.png" alt="image-20230418201747630" style="zoom: 80%;" />
+
+<img src="关于git操作的整合.assets/image-20230418202132971.png" alt="image-20230418202132971" style="zoom: 80%;" />
+
+因为没有共同的祖先/ 执行过共同的操作，例如我新建的远程仓库时新建了一个md文件，因为对远程操作了，本地无此文件，那么会导致我本地文件的上传失败
+
+​	**解决措施**： git pull ,将将远程仓库的文件下载到本地（此行为称为**合并**）再重新上传
+
+
+
+<img src="关于git操作的整合.assets/image-20230418202430605.png" alt="image-20230418202430605" style="zoom:80%;" />
+
+
+
+
+
+### 合并与备份
+
+<img src="关于git操作的整合.assets/image-20230418202657734.png" alt="image-20230418202657734" style="zoom: 80%;" />
+
+
+
+本地仓库与GitHub仓库连接时，通常会使用`git clone`命令将远程仓库复制到本地，这样就可以在本地对代码进行修改，然后再将修改后的代码提交到GitHub远程仓库中。这个过程涉及到备份和合并两个概念。
+
+备份指的是将GitHub远程仓库的代码复制到本地，这样在本地就有了一份代码备份。使用`git clone`命令可以将远程仓库备份到本地。
+
+合并指的是将本地仓库中修改后的代码合并到GitHub远程仓库中。使用`git push`命令可以将本地仓库中的修改推送到远程仓库中，实现代码合并。
+
+### 上传不为覆盖上传，强制上传时为覆盖上传
+
+上传到远程仓库的操作通常使用 `git push` 命令，它默认会将本地仓库中的变更提交到远程仓库的对应分支上。如果这个分支在远程仓库中已经存在，那么上传的内容会与远程仓库中的内容合并；如果远程仓库中不存在这个分支，那么会创建一个新的分支。
+
+在合并的过程中，如果存在冲突，那么需要手动解决冲突后再提交。如果上传的内容不想与远程仓库中的内容合并，可以使用 `git push --force` 命令强制覆盖远程仓库中的内容，但是需要注意这可能会导致其他人的工作丢失，所以应该谨慎使用。
+
+
+
+<img src="关于git操作的整合.assets/image-20230418203957714.png" alt="image-20230418203957714" style="zoom:80%;" />
+
+
+
+### GitPush 的具体使用
+
+![image-20230418204542714](关于git操作的整合.assets/image-20230418204542714.png)
+
+
+
+GitAdd 和 GitPush ()
+
+![image-20230418205058439](关于git操作的整合.assets/image-20230418205058439.png)
+
+
+
+
+
+# 出现的问题及解决方法
+
+### 未初始化
+
+<img src="关于git操作的整合.assets/image-20230418193326175.png" alt="image-20230418193326175" style="zoom:80%;" />
+
+### 
+
+"Initialized empty Git repository" 是 Git 在创建新仓库时输出的消息，表示 Git 成功初始化了一个新的空仓库。
+
+在您执行 `git init` 命令后，Git 会在当前目录下创建一个名为 `.git` 的子目录。这个子目录包含 Git 仓库所需的所有文件和目录，包括提交历史记录、分支、标签等
+
+### error: failed to push some refs to '[https://github.com/zkd-11/DataStructure.git]'
+
+**错误通常是由于本地仓库和远程仓库之间存在冲突或不同步而导致的**
+拉取远程仓库的最新更改并合并到本地仓库。您可以使用以下命令拉取远程分支并将其合并到本地分支：
+
+```c++
+git pull origin [branch name]
+```
+
+请将 `[branch name]` 替换为您要拉取的远程分支的名称。
+
+如果您的本地仓库和远程仓库之间存在冲突，您可能需要手动解决冲突并提交更改。请使用以下命令查看未合并的文件：
+
+```
+git status
+```
+
+您可以在查看冲突后手动编辑文件以解决冲突。然后，使用以下命令将更改添加到暂存区并提交到本地仓库：
+
+```
+git commit -m "commit message"
+```
+
+请将 `[file]` 替换为您要添加到暂存区的文件的名称，将 "commit message" 替换为您的提交信息。
+
+如果上述方法都无法解决问题，请尝试将远程仓库重新设置为本地仓库的 upstream，然后再次尝试推送更改：
+
+```
+git remote add upstream [remote repository URL]
+git push upstream [branch name]
+```
+
+请将 `[remote repository URL]` 替换为您的远程仓库的 URL，将 `[branch name]` 替换为您要推送到远程仓库的分支的名称。
+
+希望这些方法中的一个能够帮助您解决 "error: failed to push some refs to" 错误
+
+
+
+### 本地分支与远程分支不一致
+
+<img src="关于git操作的整合.assets/image-20230418201139585.png" alt="image-20230418201139585" style="zoom:80%;" />
+
+
+
+### fatal: refusing to merge unrelated histories
+
+<img src="关于git操作的整合.assets/image-20230418201435277.png" alt="image-20230418201435277" style="zoom:80%;" />
+
+
+
+### fatal: pathspec 'origin' did not match any files
+
+<img src="关于git操作的整合.assets/image-20230418203806929.png" alt="image-20230418203806929" style="zoom:80%;" />

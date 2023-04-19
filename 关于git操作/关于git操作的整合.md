@@ -198,13 +198,13 @@ git push -u origin main  将新的分支推送到远程仓库，初次使用时�
 
 ### GitPush 的具体使用
 
-![image-20230418204542714](关于git操作的整合.assets/image-20230418204542714.png)
+<img src="关于git操作的整合.assets/image-20230418204542714.png" alt="image-20230418204542714" style="zoom:80%;" />
 
 
 
 GitAdd 和 GitPush ()
 
-![image-20230418205058439](关于git操作的整合.assets/image-20230418205058439.png)
+<img src="关于git操作的整合.assets/image-20230418205058439.png" alt="image-20230418205058439" style="zoom:80%;" />
 
 
 

@@ -6,21 +6,21 @@ struct Student{
 	char name[200];
 	int age;
 };
-//æå‰å£°æ˜ï¼Œ mainåå®šä¹‰äº†ä¸¤ä¸ªæ–¹æ³•ï¼ˆåœ¨åé¢éœ€è¦å£°æ˜ï¼‰ 
+//ÌáÇ°ÉùÃ÷£¬ mainºó¶¨ÒåÁËÁ½¸ö·½·¨£¨ÔÚºóÃæĞèÒªÉùÃ÷£© 
 void g(struct Student *pst);
 void f(struct Student *pst);
 
 int main(void){
-	struct Student st = {100, "éŸ©ç»", 22};
-	strcpy(st.name , "éŸ©ç»å“¥");
+	struct Student st = {100, "º«¾ø", 22};
+	strcpy(st.name , "º«¾ø¸ç");
 	printf("%d  %s %d \n", st.sid, st.name, st.age); 
 	
 	struct Student * pst;
 	 pst = &st;
-	 pst ->sid = 99;  //ç­‰ä»·äº (*pst).sid ç­‰ä»·äº st.sod
-//	 pst  æŒ‡å‘ç»“æ„ä½“çš„æˆå‘˜ sid 
+	 pst ->sid = 99;  //µÈ¼ÛÓÚ (*pst).sid µÈ¼ÛÓÚ st.sod
+//	 pst  Ö¸Ïò½á¹¹ÌåµÄ³ÉÔ± sid 
 
-	struct Student st1; //æœªèµ‹å€¼ï¼Œ st1å­˜å‚¨çš„ä¸ºåƒåœ¾æ•°å€¼
+	struct Student st1; //Î´¸³Öµ£¬ st1´æ´¢µÄÎªÀ¬»øÊıÖµ
 	g(&st1);
 	f(&st1);
 	 
@@ -28,9 +28,10 @@ int main(void){
 
 void g(struct Student * pst){
 	(*pst).sid = 1998;
-	strcpy(pst->name, "èµµå“¥");
+	strcpy(pst->name, "ÕÔ¸ç");
 	(*pst).age = 20; 
 } 
 void f(struct Student * pst){
-	printf("\n ä¸ºæ‚¨è¾“å‡ºèµµå“¥çš„ä¿¡æ¯ï¼š %d %s %d \n", pst->sid, pst->name, pst->age);
+	printf("\n ÎªÄúÊä³öÕÔ¸çµÄĞÅÏ¢£º %d %s %d \n", pst->sid, pst->name, pst->age);
 }
+

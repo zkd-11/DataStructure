@@ -14,9 +14,6 @@ void Hannoi(int val, char A, char B, char C){
 	 	
 	//此句执行完 意味着 B上的val-1 盘子  挪至C盘
 		Hannoi(val-1,B, A, C); 
-	
-
-
 	}
 
 }

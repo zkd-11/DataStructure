@@ -15,6 +15,7 @@ void Hannoi(int val, char A, char B, char C){
 	//此句执行完 意味着 B上的val-1 盘子  挪至C盘
 		Hannoi(val-1,B, A, C); 
 	}
+	return 0;
 
 }
 
@@ -23,7 +24,7 @@ int main(){
 	char ch1='A', ch2 = 'B', ch3 = 'C';
 	
 	printf("请输入你所放入的汉诺塔层数：");
-	printf("\n");
+	printf("\n"); 
 	
 	scanf("%d", &val);
 	

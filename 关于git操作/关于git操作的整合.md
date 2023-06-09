@@ -60,9 +60,9 @@ GitGui,需要**下载汉化包 zh_cn_msg**，并将汉化包放到msgs文件下�
 
    将本地 Git 仓库的提交推送到 GitHub 远程仓库中的 `main` 分支
 
-   ​	**git push -u origin main** ， 此句原为git push -u origin main(远程仓库的main分支) 	
+   ​	**git push -u origin main** ， 此句原为git push -u origin main(远程仓库的main分支) 	main(本地仓库的main分支)
 
-   ​	main(本地仓库的main分支)，因为名字相同故可以省略为如上语句
+   因为名字相同故可以省略为如上语句
 
 
 
@@ -309,3 +309,37 @@ git push upstream [branch name]
 ### fatal: pathspec 'origin' did not match any files
 
 <img src="关于git操作的整合.assets/image-20230418203806929.png" alt="image-20230418203806929" style="zoom:80%;" />
+
+- ```js
+  
+  
+  ```
+
+
+
+
+
+```js
+var let = function(){
+    
+    var a=0
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
+
+
+- 
+- 
